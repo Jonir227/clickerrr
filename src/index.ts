@@ -1,6 +1,8 @@
 import 'normalize.css';
+import sidebar from './components/sidebar';
 import './styles/main.scss';
 
-const c: string = '타입스크립트~';
+const sidebarElement = document.getElementById('side-bar');
+const mainContent = document.getElementById('main-content');
 
-console.log(c);
+sidebarElement && sidebar(sidebarElement);
