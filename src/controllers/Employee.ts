@@ -1,22 +1,21 @@
 import ScoreObserver from '../models/ScoreObserver';
 import { interval } from 'rxjs';
+import Company from './Company';
 
 class Employee {
   private name: string;
   private price: number;
   private efficiency: number;
-  private score: ScoreObserver;
 
-  constructor(name: string, price: number, efficiency: number, score: ScoreObserver) {
+  constructor(name: string, price: number, efficiency: number) {
     this.name = name;
     this.price = price;
     this.efficiency = efficiency;
-    this.score = score;
   }
 
-  public work() {
+  public work(company: Company) {
     const worked = interval(this.efficiency);
-    worked.subscribe(() => this.score.increase(this.price));
+    worked.subscribe(() => company.profit(this.price));
   }
 
   public getName() {
