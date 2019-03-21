@@ -1,23 +1,14 @@
-const scoreboard = function(el: HTMLElement) {
-  // state
-  const score = 0;
+import ScoreObserver from '../../models/ScoreObserver';
 
-  // elements
-  const fragment = document.createDocumentFragment();
-  const scoreElement = document.createElement('div');
+const scoreboard = function(el: Element, scoreObserver: ScoreObserver) {
+  // 앨리먼트 캐시
+  const scoreElement = el.querySelector('.score');
 
-  scoreElement.innerText = score + '';
-
-  const childs = [scoreElement];
-
-  function render() {
-    childs.forEach(e => {
-      fragment.appendChild(scoreElement);
-    });
-    el.appendChild(fragment);
+  function render(n: Number) {
+    if (scoreElement) scoreElement.innerHTML = n.toString();
   }
 
-  render();
+  scoreObserver.subScribe({ next: render, error: () => {}, complete: () => {} });
 };
 
 export default scoreboard;

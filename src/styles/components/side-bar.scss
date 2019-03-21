@@ -1,6 +1,46 @@
 
+.description {
+  text-align: center;
+  font-size: 30px;
+}
+
 .side-bar {
-  background-color: yellow;
+  background-color: #dddddd;
   width: 250px;
   height: 100%;
+  .score-board {
+    text-align: center;
+    .score {
+      font-size: 63px;
+    }
+  }
+  .clicker {
+    display: block;
+    margin: 8px auto 8px auto;
+    font-size: 45px;
+    height: 150px;
+    width: 150px;
+    border: none;
+    background-color: transparent;
+    &:active {
+      background-color: #cccccc;
+    }
+  }
 }
+
+.market {
+  border-top: solid 2px white;
+  padding-top: 15px;
+}
+
+@keyframes on-click{
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: tomato;
+  }
+  100% {
+    background-color: transparent;
+  }
+};
