@@ -1,4 +1,3 @@
-import ScoreObserver from '../models/ScoreObserver';
 import { interval } from 'rxjs';
 import Company from './Company';
 

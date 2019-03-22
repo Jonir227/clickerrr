@@ -1,19 +1,21 @@
-import Employee from './Employee';
-import ScoreObserver from '../models/ScoreObserver';
 import { Subject } from 'rxjs';
-import { reduce, bufferTime, filter, mapTo, merge } from 'rxjs/operators';
+import { bufferTime, filter } from 'rxjs/operators';
+import ScoreObserver from '../models/ScoreObserver';
+import Employee from './Employee';
 
 class Company {
   private room: number;
   private employees: Employee[];
   private score: ScoreObserver;
   private companyProfitSubject: Subject<number>;
+  private roomSubject: Subject<number>;
 
   constructor(score: ScoreObserver) {
     this.room = 1;
     this.employees = [];
     this.score = score;
     this.companyProfitSubject = new Subject();
+    this.roomSubject = new Subject();
 
     // 회사가 이익을 내면 스코어를 증가시킴
     // 100 ms 동안 발생된 이득을 배열로 만든뒤에 합친다음 보낸다.
@@ -30,6 +32,7 @@ class Company {
 
   public newRoom() {
     this.room++;
+    this.roomSubject.next(this.room);
   }
 
   public hire(employee: Employee): boolean {
@@ -42,7 +45,6 @@ class Company {
   }
 
   public profit(number: number) {
-    console.log(number);
     this.companyProfitSubject.next(number);
   }
 }
