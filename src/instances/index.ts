@@ -1,4 +1,6 @@
 import clickerButton from './clickerButton';
+import company from './company';
 import scoreObserver from './scoreObserver';
 
-export default { clickerButton, scoreObserver };
+export { clickerButton, scoreObserver, company };
+
